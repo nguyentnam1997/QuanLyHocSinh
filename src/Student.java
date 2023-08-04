@@ -60,14 +60,13 @@ public class Student {
     }
 
 
-    public String Show() {
-        return "Student{" +
-                "id: " + id +
-                ", tên: " + name +
+    public String show() {
+        return "Học sinh có id là " + id + ": {" +
+                "tên: " + name +
                 ", tuổi: " + age +
                 ", địa chỉ: " + address +
                 ", điểm: " + point +
                 ", lớp: " + classroom +
-                '}';
+                "}";
     }
 }

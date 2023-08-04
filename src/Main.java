@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -13,20 +14,63 @@ public class Main {
                 System.out.println("Không hợp lệ, mời nhập lại!");
                 continue;
             }
+
             Student[] arrStudent = new Student[n];  //Tạo mảng lưu danh sách các học sinh
+
             for (int i = 0; i < arrStudent.length; i++) {
                 System.out.println("----------SINH VIÊN THỨ " + (i + 1) + "----------");
-                //StudentMethods s = new StudentMethods();
-                arrStudent[i] = ultilities.CreateStudent(scanner, countId);
+                arrStudent[i] = ultilities.createStudent(scanner, countId);  //Tạo học sinh và gán vào phần từ mảng
                 countId++;  //Sau khi tạo và gán Học sinh vào mảng, count tăng 1 cho id
             }
-            //////Menu các chức năng
 
+            //////Chọn các chức năng từ Menu chức năng
+            ultilities.showMenu();
+            int choose = Integer.parseInt(scanner.nextLine());
+            switch (choose) {
 
-            for (int i = 0; i < arrStudent.length; i++) {
-                System.out.println(arrStudent[i].Show());
+                //Xem danh sách học sinh
+                case 1 -> ultilities.showStudent(arrStudent);
+
+                //Thêm học sinh mới
+                case 2 -> {
+                    //Tạo mảng mới có thêm học sinh
+                    Student[] arrStudentAfterAdded = new Student[arrStudent.length + 1];
+                    //Gán mảng cũ vào mảng mới
+                    ultilities.addNewStudent(arrStudent, arrStudentAfterAdded);
+                    //Tạo ra học sinh mới và gán vào phần tử cuối cùng của mảng mới
+                    arrStudentAfterAdded[arrStudent.length] = ultilities.createStudent(scanner, countId);
+                    //Hiển thị
+                    ultilities.showStudent(arrStudentAfterAdded);
+                }
+
+                //Cập nhật điểm học sinh
+                case 3 -> {
+                    ultilities.showStudent(arrStudent);
+
+                    ultilities.updatePointStudent(scanner, arrStudent);
+
+                    System.out.println("--------Sau khi cập nhật----------");
+                    ultilities.showStudent(arrStudent);
+                }
+
+                //Xoá học sinh
+                case 4 -> {
+                    ultilities.showStudent(arrStudent);
+                    //Tạo mảng mới đã xoá học sinh
+                    Student[] arrStudentAfterDeleted = new Student[arrStudent.length - 1];
+
+                    ultilities.deleteStudent(scanner, arrStudent, arrStudentAfterDeleted);
+
+                    System.out.println("--------Sau khi đã xoá----------");
+                    ultilities.showStudent(arrStudentAfterDeleted);
+                }
+
+                //Xem danh sách học sinh theo lớp
+                case 5 -> {
+                    ultilities.showStudent(arrStudent);
+                    ultilities.showStudentbyClassroom(scanner, arrStudent);
+                }
             }
-
             break;
         }
         while (true);
