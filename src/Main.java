@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
@@ -69,6 +70,25 @@ public class Main {
                 case 5 -> {
                     ultilities.showStudent(arrStudent);
                     ultilities.showStudentbyClassroom(scanner, arrStudent);
+                }
+
+                //Sắp xếp theo tên
+                case 6 -> {
+                    System.out.println("------Sắp xếp theo tên--------");
+                    Arrays.sort(arrStudent, Comparator.comparing(Student::getName));
+                    ultilities.showStudent(arrStudent);
+                }
+
+                //Sắp xếp theo điểm
+                case 8 -> {
+                    System.out.println("Sắp xếp tăng dần theo điểm");
+                    Student tmp = null;
+                    ultilities.sortAscendingByPoint(arrStudent, tmp);
+                    ultilities.showStudent(arrStudent);
+
+                    System.out.println("Sắp xếp giảm dần theo điểm");
+                    ultilities.sortDescendingByPoint(arrStudent, tmp);
+                    ultilities.showStudent(arrStudent);
                 }
             }
             break;

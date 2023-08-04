@@ -115,4 +115,28 @@ public class StudentMethods {
             }
         }
     }
+
+    //Phương thức sắp xếp học sinh theo điểm
+    public void sortAscendingByPoint(Student[] arr, Student tmp) {   //Sắp xếp tăng dần
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length - 1; j++) {
+                if (arr[i].getPoint() > arr[j].getPoint()) {
+                    tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
+    }
+    public void sortDescendingByPoint(Student[] arr, Student tmp) {   //Sắp xếp giảm dần
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length - 1; j++) {
+                if (arr[i].getPoint() > arr[j].getPoint()) {
+                    tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
+    }
 }
