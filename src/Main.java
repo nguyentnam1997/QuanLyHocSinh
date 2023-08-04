@@ -82,12 +82,11 @@ public class Main {
                 //Sắp xếp theo điểm
                 case 8 -> {
                     System.out.println("Sắp xếp tăng dần theo điểm");
-                    Student tmp = null;
-                    ultilities.sortAscendingByPoint(arrStudent, tmp);
+                    ultilities.sortAscendingByPoint(arrStudent);
                     ultilities.showStudent(arrStudent);
 
                     System.out.println("Sắp xếp giảm dần theo điểm");
-                    ultilities.sortDescendingByPoint(arrStudent, tmp);
+                    ultilities.sortDescendingByPoint(arrStudent);
                     ultilities.showStudent(arrStudent);
                 }
             }
