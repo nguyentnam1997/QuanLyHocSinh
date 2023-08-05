@@ -116,6 +116,32 @@ public class StudentMethods {
         }
     }
 
+    //Phương thức sắp xếp học sinh theo tuổi
+    public void sortAscendingByAge(Student[] arr) {   //Sắp xếp tăng dần
+        Student tmp;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length - 1; j++) {
+                if (arr[i].getAge() > arr[j].getAge()) {
+                    tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
+    }
+    public void sortDescendingByAge(Student[] arr) {   //Sắp xếp giảm dần
+        Student tmp;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length - 1; j++) {
+                if (arr[i].getAge() < arr[j].getAge()) {
+                    tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
+    }
+
     //Phương thức sắp xếp học sinh theo điểm
     public void sortAscendingByPoint(Student[] arr) {   //Sắp xếp tăng dần
         Student tmp;

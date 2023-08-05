@@ -79,6 +79,17 @@ public class Main {
                     ultilities.showStudent(arrStudent);
                 }
 
+                //Sắp xếp theo tuổi
+                case 7 -> {
+                    System.out.println("Sắp xếp tăng dần theo tuổi");
+                    ultilities.sortAscendingByAge(arrStudent);
+                    ultilities.showStudent(arrStudent);
+
+                    System.out.println("Sắp xếp giảm dần theo tuổi");
+                    ultilities.sortDescendingByAge(arrStudent);
+                    ultilities.showStudent(arrStudent);
+                }
+
                 //Sắp xếp theo điểm
                 case 8 -> {
                     System.out.println("Sắp xếp tăng dần theo điểm");
