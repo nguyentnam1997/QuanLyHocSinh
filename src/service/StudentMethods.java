@@ -1,6 +1,91 @@
+package service;
+
+import entities.Student;
+
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class StudentMethods {
+    //Phương thức chọn chức năng của menu
+    public void selectMenu(Scanner scanner, int countId, int choose, StudentMethods ultilities, Student[] arrStudent) {
+
+        switch (choose) {
+
+            //Xem danh sách học sinh
+            case 1 -> ultilities.showStudent(arrStudent);
+
+            //Thêm học sinh mới
+            case 2 -> {
+                //Tạo mảng mới có thêm học sinh
+                Student[] arrStudentAfterAdded = new Student[arrStudent.length + 1];
+                //Gán mảng cũ vào mảng mới
+                ultilities.addNewStudent(arrStudent, arrStudentAfterAdded);
+                //Tạo ra học sinh mới và gán vào phần tử cuối cùng của mảng mới
+                arrStudentAfterAdded[arrStudent.length] = ultilities.createStudent(scanner, countId);
+                //Hiển thị
+                ultilities.showStudent(arrStudentAfterAdded);
+            }
+
+            //Cập nhật điểm học sinh
+            case 3 -> {
+                ultilities.showStudent(arrStudent);
+
+                ultilities.updatePointStudent(scanner, arrStudent);
+
+                System.out.println("--------Sau khi cập nhật----------");
+                ultilities.showStudent(arrStudent);
+            }
+
+            //Xoá học sinh
+            case 4 -> {
+                ultilities.showStudent(arrStudent);
+                //Tạo mảng mới đã xoá học sinh
+                Student[] arrStudentAfterDeleted = new Student[arrStudent.length - 1];
+
+                ultilities.deleteStudent(scanner, arrStudent, arrStudentAfterDeleted);
+
+                System.out.println("--------Sau khi đã xoá----------");
+                ultilities.showStudent(arrStudentAfterDeleted);
+            }
+
+            //Xem danh sách học sinh theo lớp
+            case 5 -> {
+                ultilities.showStudent(arrStudent);
+                ultilities.showStudentbyClassroom(scanner, arrStudent);
+            }
+
+            //Sắp xếp theo tên
+            case 6 -> {
+                System.out.println("------Sắp xếp theo tên--------");
+                Arrays.sort(arrStudent, Comparator.comparing(Student::getName));
+                ultilities.showStudent(arrStudent);
+            }
+
+            //Sắp xếp theo tuổi
+            case 7 -> {
+                System.out.println("Sắp xếp tăng dần theo tuổi");
+                ultilities.sortAscendingByAge(arrStudent);
+                ultilities.showStudent(arrStudent);
+
+                System.out.println("Sắp xếp giảm dần theo tuổi");
+                ultilities.sortDescendingByAge(arrStudent);
+                ultilities.showStudent(arrStudent);
+            }
+
+            //Sắp xếp theo điểm
+            case 8 -> {
+                System.out.println("Sắp xếp tăng dần theo điểm");
+                ultilities.sortAscendingByPoint(arrStudent);
+                ultilities.showStudent(arrStudent);
+
+                System.out.println("Sắp xếp giảm dần theo điểm");
+                ultilities.sortDescendingByPoint(arrStudent);
+                ultilities.showStudent(arrStudent);
+            }
+        }
+    }
+
     //Phương thức tạo Học sinh
     public Student createStudent(Scanner scanner, int id) {
         System.out.println("Mời nhập tên:");
@@ -125,7 +210,7 @@ public class StudentMethods {
     public void sortAscendingByAge(Student[] arr) {   //Sắp xếp tăng dần
         Student tmp;
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j < arr.length - 1; j++) {
+            for (int j = i; j < arr.length; j++) {
                 if (arr[i].getAge() > arr[j].getAge()) {
                     tmp = arr[i];
                     arr[i] = arr[j];
@@ -137,7 +222,7 @@ public class StudentMethods {
     public void sortDescendingByAge(Student[] arr) {   //Sắp xếp giảm dần
         Student tmp;
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j < arr.length - 1; j++) {
+            for (int j = i; j < arr.length; j++) {
                 if (arr[i].getAge() < arr[j].getAge()) {
                     tmp = arr[i];
                     arr[i] = arr[j];
@@ -151,7 +236,7 @@ public class StudentMethods {
     public void sortAscendingByPoint(Student[] arr) {   //Sắp xếp tăng dần
         Student tmp;
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j < arr.length - 1; j++) {
+            for (int j = i; j < arr.length; j++) {
                 if (arr[i].getPoint() > arr[j].getPoint()) {
                     tmp = arr[i];
                     arr[i] = arr[j];
@@ -163,7 +248,7 @@ public class StudentMethods {
     public void sortDescendingByPoint(Student[] arr) {   //Sắp xếp giảm dần
         Student tmp;
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j < arr.length - 1; j++) {
+            for (int j = i; j < arr.length; j++) {
                 if (arr[i].getPoint() < arr[j].getPoint()) {
                     tmp = arr[i];
                     arr[i] = arr[j];

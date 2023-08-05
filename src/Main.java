@@ -1,3 +1,5 @@
+import entities.Student;
+import service.StudentMethods;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -25,9 +27,19 @@ public class Main {
             }
 
             //////Chọn các chức năng từ Menu chức năng
-            ultilities.showMenu();
-            int choose = Integer.parseInt(scanner.nextLine());
-            switch (choose) {
+            do {
+                ultilities.showMenu();
+                int choose = Integer.parseInt(scanner.nextLine());
+                ultilities.selectMenu(scanner, countId, choose, ultilities, arrStudent);
+                System.out.println("-------- Continues? (Y/N)");
+                String continues = scanner.nextLine();
+                if (continues.equalsIgnoreCase("Y")) {
+                    continue;
+                }
+                break;
+            }
+            while (true);
+            /*switch (choose) {
 
                 //Xem danh sách học sinh
                 case 1 -> ultilities.showStudent(arrStudent);
@@ -100,7 +112,7 @@ public class Main {
                     ultilities.sortDescendingByPoint(arrStudent);
                     ultilities.showStudent(arrStudent);
                 }
-            }
+            }*/
             break;
         }
         while (true);
