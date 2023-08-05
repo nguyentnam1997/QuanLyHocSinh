@@ -113,6 +113,7 @@ public class StudentMethods {
             if (inputClassroom.equalsIgnoreCase(arr[i].getClassroom())) {
                 System.out.println(arr[i].show());
             }
+            else System.out.println("Không có học sinh nào của lớp " + inputClassroom);
         }
     }
 
