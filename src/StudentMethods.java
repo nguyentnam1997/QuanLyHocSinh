@@ -109,11 +109,15 @@ public class StudentMethods {
         System.out.println("Nhập lớp cần xem danh sách:");
         String inputClassroom = scanner.nextLine();
         System.out.println("-------Danh sách học sinh của lớp " + inputClassroom + "----------");
+        int count = 0;
         for (int i = 0; i < arr.length; i++) {
             if (inputClassroom.equalsIgnoreCase(arr[i].getClassroom())) {
+                count++;
                 System.out.println(arr[i].show());
             }
-            else System.out.println("Không có học sinh nào của lớp " + inputClassroom);
+        }
+        if (count <= 0) {
+            System.out.println("Không có học sinh nào của lớp " + inputClassroom);
         }
     }
 
